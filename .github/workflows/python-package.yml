@@ -29,11 +29,17 @@ jobs:
           pip install --upgrade pip
           pip install buildozer cython virtualenv kivy
 
-      - name: Aceptar Licencias de Android y Compilar APK
+      - name: Aceptar Licencias Oficiales de Android SDK
         run: |
           mkdir -p ~/.android
           touch ~/.android/repositories.cfg
-          yes | buildozer android debug
+          # Esto acepta las licencias directamente en el SDK manager del sistema
+          yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses || true
+
+      - name: Compilar APK con Buildozer
+        run: |
+          # Ejecutamos buildozer normalmente sin el comando "yes" al frente
+          buildozer android debug
 
       - name: Guardar y Descargar APK
         uses: actions/upload-artifact@v4
