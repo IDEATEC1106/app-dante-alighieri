@@ -37,8 +37,11 @@ jobs:
           yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses || true
 
       - name: Compilar APK con Buildozer
+        env:
+          ANDROID_SDK_ROOT: /usr/local/lib/android/sdk
+          ANDROID_NDK_ROOT: /usr/local/lib/android/sdk/ndk-bundle
         run: |
-          # Ejecutamos buildozer normalmente sin el comando "yes" al frente
+          # Forzamos a Buildozer a leer el SDK preinstalado en el servidor
           buildozer android debug
 
       - name: Guardar y Descargar APK
