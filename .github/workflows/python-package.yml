@@ -19,7 +19,7 @@ jobs:
         with:
           python-version: '3.10'
 
-      - name: Instalar Dependencias del Sistema de Android
+      - name: Instalar Dependencias del Sistema
         run: |
           sudo apt-get update
           sudo apt-get install -y ccache git libffi-dev libssl-dev autoconf automake libtool pkg-config zlib1g-dev libncurses5-dev libncursesw5-dev libtinfo5 cmake zip unzip openjdk-17-jdk
@@ -29,19 +29,14 @@ jobs:
           pip install --upgrade pip
           pip install buildozer cython virtualenv kivy
 
-      - name: Aceptar Licencias Oficiales de Android SDK
+      - name: Corregir Ruta de Android SDK Tools
         run: |
-          mkdir -p ~/.android
-          touch ~/.android/repositories.cfg
-          # Esto acepta las licencias directamente en el SDK manager del sistema
-          yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses || true
+          # Creamos el acceso directo para que Buildozer encuentre sdkmanager
+          mkdir -p /usr/local/lib/android/sdk/tools/bin
+          ln -s /usr/local/lib/android/sdk/cmdline-tools/latest/bin/sdkmanager /usr/local/lib/android/sdk/tools/bin/sdkmanager
 
       - name: Compilar APK con Buildozer
-        env:
-          ANDROID_SDK_ROOT: /usr/local/lib/android/sdk
-          ANDROID_NDK_ROOT: /usr/local/lib/android/sdk/ndk-bundle
         run: |
-          # Forzamos a Buildozer a leer el SDK preinstalado en el servidor
           buildozer android debug
 
       - name: Guardar y Descargar APK
