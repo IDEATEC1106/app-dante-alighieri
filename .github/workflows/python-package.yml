@@ -46,8 +46,10 @@ jobs:
 
     - name: Compilar APK con Buildozer (Logs Detallados)
       run: |
-        # Ejecuta buildozer en modo "verbose" para ver cada paso en vivo
         buildozer -v android debug
+      env:
+        # Evita que el compilador sature la memoria del runner de GitHub
+        NUMBER_OF_PROCESSORS: 2
 
     - name: Subir el APK generado como Artefacto
       uses: actions/upload-artifact@v4
