@@ -27,13 +27,17 @@ jobs:
     - name: Instalar dependencias del sistema de Ubuntu
       run: |
         sudo apt-get update
+        # 1. Instalamos primero libunwind-dev para solucionar la dependencia rota de GStreamer
+        sudo apt-get install -y libunwind-dev
+        
+        # 2. Instalamos el resto de librerías del sistema requeridas por Buildozer
         sudo apt-get install -y build-essential git ffmpeg libgstreamer1.0-dev \
           gstreamer1.0-plugins-base gstreamer1.0-plugins-good gstreamer1.0-plugins-bad \
           gstreamer1.0-plugins-ugly gstreamer1.0-libav libgstreamer-plugins-base1.0-dev \
           libasound2-dev libportaudio2 libportaudiocpp0 portaudio19-dev libffi-dev libssl-dev \
           cmake autoconf libtool pkg-config zlib1g-dev libncurses5-dev libgdbm-dev \
           libnss3-dev libreadline-dev uuid-dev tar docutils checkinstall libsqlite3-dev \
-          g++ unzip zip aidl libstdc++6
+          g++ unzip zip aidl
 
     - name: Instalar Buildozer y Cython en el Runner
       run: |
