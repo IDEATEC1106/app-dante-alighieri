@@ -20,10 +20,9 @@ jobs:
         java-version: '17'
 
     - name: Compilar APK usando Buildozer Action
-      uses: ArtemSBulgakov/buildozer-action@v3
+      uses: ArtemSBulgakov/buildozer-action@v1
       with:
         buildozer_version: stable
-        # Esto forzará el log detallado directamente en la consola del Action
         command: buildozer -v android debug
 
     - name: Subir el APK generado como Artefacto
