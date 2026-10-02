@@ -42,7 +42,8 @@ jobs:
     - name: Instalar Buildozer y Cython en el Runner
       run: |
         pip install --upgrade pip
-        pip install buildozer cython==3.0.8 sh
+        # Forzamos la versión 0.29.37 en la máquina virtual
+        pip install buildozer cython==0.29.37 sh
 
     - name: Compilar APK con Buildozer (Logs Detallados)
       run: |
