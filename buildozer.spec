@@ -23,7 +23,7 @@ version = 1.0.0
 
 # (list) REQUISITOS IMPORTANTES: Forzamos Python 3.11 para evitar el error de Python 3.14
 # ¡Si usas librerías extras (ej. requests), agrégalas al final separadas por comas!
-requirements = python3, kivy==2.3.0, cython==0.29.33
+requirements = python3,kivy==2.3.0,cython==0.29.33,pyjnius
 
 # (str) Orientación de la pantalla (landscape, sensorLandscape, portrait o all)
 orientation = portrait
