@@ -5,7 +5,7 @@ package.domain = org.example
 source.dir = .
 source.include_exts = py,png,jpg,kv,atlas
 version = 0.1
-requirements = python3,kivy==2.3.0,cython==0.29.33,pyjnius
+requirements = python3, kivy==2.3.0, cython==3.0.11
 orientation = portrait
 fullscreen = 1
 
