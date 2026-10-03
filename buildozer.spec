@@ -14,8 +14,8 @@ log_level = 2
 warn_on_root = 1
 
 [android]
-android.api = 34
-android.minapi = 24
-android.ndk = 26b
+android.api = 33
+android.minapi = 21
+android.ndk = 25b
 android.arch = arm64-v8a
 android.bootstrap = sdl2
